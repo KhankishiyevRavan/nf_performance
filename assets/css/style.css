@@ -91,7 +91,6 @@
     
     #form {
         width: 430px;
-        text-align: center;
         margin-top: 20px;
     }
     
@@ -99,21 +98,21 @@
         line-height: 1.5;
         font-weight: 600;
         font-size: 1.5rem;
+        text-align: center;
     }
     
     #buttons_under_sign_in {
         margin-top: 28px;
         display: flex;
-        justify-content: space-between;
+        gap: 40px;
     }
     
     .span_in_sign {
-        display: inline-block;
-        font-weight: 400;
         font-size: 0.875rem;
         color: #A098AE;
         line-height: 1.5;
         margin-top: 8px;
+        text-align: center;
     }
     
     #google_img {
@@ -128,15 +127,19 @@
         padding: 10px;
         display: flex;
         align-content: center;
+        text-align: center;
     }
     
     .text_buttons {
         line-height: 1.5;
         font-weight: 500;
-        font-size: 1rem;
         font-size: 13px;
         display: inline-block;
         width: 130px;
+    }
+    
+    .fa-brands {
+        font-size: 25px;
     }
     
     .link_under_sign_in {
@@ -216,6 +219,13 @@
         font-size: 0.875rem;
     }
     
+    @media screen and (max-width:2000px) {
+        #right_div {
+            width: 1150px;
+            margin-top: 50px;
+        }
+    }
+    
     @media screen and (max-width:1000px) {
         #container_for_two_div {
             flex-direction: column;
@@ -240,6 +250,35 @@
             display: flex;
         }
         #right_div {
+            width: 100%;
+        }
+    }
+    
+    @media screen and (max-width:500px) {
+        #buttons_under_sign_in {
+            gap: 0px;
+        }
+        #google_img {
+            width: 20px;
+            height: 20px;
+            margin-top: 3px;
+        }
+        .fa-brands {
+            font-size: 20px;
+            margin-top: 3px;
+        }
+        .text_buttons {
+            font-size: 11px;
+        }
+        .sign_in_buttons {
+            width: 49%;
+            height: 47px;
+            padding: 10px;
+        }
+        .container {
+            width: 90%;
+        }
+        #logo {
             width: 100%;
         }
     }
