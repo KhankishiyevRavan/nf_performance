@@ -40,7 +40,7 @@ get(dataRef)
 						    <th>${counter}</th>
 							<td>
                                 <div class="d-flex align-items-center">
-                                    <img src="images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt="">
+                                    <img src=${university?.logo_url} class="rounded-lg me-2" width="24" alt="">
                                     <a class="w-space-no" style='cursor:pointer;' href="university.html?id=${universityId}">
                                     ${university?.name}
                                     </a>
