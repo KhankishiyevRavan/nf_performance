@@ -1,7 +1,13 @@
 let detailsParams = new URLSearchParams(window.location.search);
 let id = detailsParams.get("id");
+let universityName = document.querySelector("#university_name");
+let universityLocation = document.querySelector("#university_location");
+let universityAbout = document.querySelector("#university_about");
+let universityImg = document.querySelector("#university_image");
+let specialtiesTable = document.querySelector("#example3");
+let editUniversityBtn = document.querySelector("#edit_university_btn")
+let universityLogoImg = document.querySelector("#logo_url")
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-// import { getDatabase } from "firebase/database";
 // Your web app's Firebase configuration
 import {
   getDatabase,
@@ -29,12 +35,41 @@ get(dataRef)
     if (snapshot.exists()) {
       const data = snapshot.val();
       console.log(data);
-    //   for (let universityId in data) {
-    //     let university = data[universityId];
-    //     // console.log(university);
-        
-    //   }
-      
+      universityName.innerText = data?.name;
+      universityLocation.innerText = `${data.country}, ${data.city}`;
+      universityAbout.innerText = data.about;
+      universityImg.src = data.image_url;
+      universityLogoImg.src = data.logo_url;
+      let specialties = data.specialties;
+      let counter = 1;
+      specialties.map((specialty) => {
+        let tr = document.createElement("tr");
+        tr.innerHTML = `
+					  <td>${counter}</td>
+						<td>${specialty.speciality_name}</td>
+						<td>${specialty.bachelor.full_time_price}</td>
+						<td>${specialty.bachelor.correspondence_price}</td>
+						<td>${specialty.master.full_time_price}</td>
+						<td>${specialty.master.correspondence_price}</td>
+					
+						<td>
+							<div class="d-flex">
+								<a	href="#"
+										class="btn btn-primary shadow btn-xs sharp me-1"
+								>
+                  <i class="fas fa-pencil-alt"></i>
+                </a>
+								<a  href="#"
+									  class="btn btn-danger shadow btn-xs sharp"
+								>
+                  <i class="fa fa-trash"></i>
+                </a>
+							</div>
+						</td>
+					`;
+        specialtiesTable.append(tr);
+        counter++;
+      });
     } else {
       console.log("No data available");
     }
@@ -42,4 +77,6 @@ get(dataRef)
   .catch((error) => {
     console.error("Error reading data: ", error);
   });
-
+editUniversityBtn.addEventListener("click",()=>{
+  window.location = `university-edit.html?id=${id}`
+})

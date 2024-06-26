@@ -36,28 +36,29 @@ get(dataRef)
         counter++;
         let tr = document.createElement("tr");
         tr.setAttribute("itemKey", universityId);
-        tr.innerHTML = `<tr>
-						    <th>${counter}</th>
-							<td>
-                                <div class="d-flex align-items-center">
-                                    <img src=${university?.logo_url} class="rounded-lg me-2" width="24" alt="">
-                                    <a class="w-space-no" style='cursor:pointer;' href="university.html?id=${universityId}">
-                                    ${university?.name}
-                                    </a>
-                                </div>
-                            </td>
-							<td><span class="badge badge-primary light">${university?.country}</span>
-							</td>
-							<td>${university?.city}</td>
-							<td class="color-primary">${university?.specialties?.length}</td>
-                            <td>
-                                <div class="d-flex">
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                </div>
-                            </td>
-						</tr>`;
-
+        tr.innerHTML = `
+        <tr>
+					<th>${counter}</th>
+					<td>
+            <div class="d-flex align-items-center">
+              <img src=${university?.logo_url} class="rounded-lg me-2" width="24" alt="">
+                <a class="w-space-no" style='cursor:pointer;' href="university-detail.html?id=${universityId}">
+                  ${university?.name}
+                </a>
+            </div>
+          </td>
+					<td>
+            <span class="badge badge-primary light">${university?.country}</span>
+		      </td>
+					<td>${university?.city}</td>
+					<td class="color-primary">${university?.specialties?.length}</td>
+          <td>
+            <div class="d-flex">
+              <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a>
+              <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+            </div>
+          </td>
+				</tr>`;
         universities_table.append(tr);
       }
       let deleteBtns = universities_table.querySelectorAll(

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Mirrored from akademi.dexignlab.com/xhtml/table-datatable-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Oct 2023 19:34:49 GMT -->
+  <!-- Mirrored from akademi.dexignlab.com/xhtml/add-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Oct 2023 19:34:02 GMT -->
   <head>
-    <!-- All Meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="DexignLab" />
@@ -36,27 +35,31 @@
 
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-    <!-- Datatable -->
-    <link
-      href="vendor/datatables/css/jquery.dataTables.min.css"
-      rel="stylesheet"
-    />
+    <link href="vendor/wow-master/css/libs/animate.css" rel="stylesheet" />
     <link
       href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
       rel="stylesheet"
     />
-    <!-- Custom Stylesheet -->
+
     <link
-      href="vendor/jquery-nice-select/css/nice-select.css"
+      href="vendor/bootstrap-datepicker-master/css/bootstrap-datepicker.min.css"
       rel="stylesheet"
     />
+
+    <link
+      href="vendor/datatables/css/jquery.dataTables.min.css"
+      rel="stylesheet"
+    />
+    <!--swiper-slider-->
+
+    <!-- Style css -->
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Icons"
       rel="stylesheet"
     />
     <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./add-css/add.css" />
   </head>
-
   <body>
     <!--*******************
         Preloader start
@@ -202,8 +205,7 @@
                           height="2"
                           rx="1"
                         />
-                      </g>
-                      </svg></a>
+                      </g></svg></a>
                   <div>
                     <h6 class="mb-1">Chat List</h6>
                     <p class="mb-0">Show All</p>
@@ -798,7 +800,8 @@
                     <h6 class="mb-1">Notications</h6>
                     <p class="mb-0">Show All</p>
                   </div>
-                  <a href="javascript:void(0);"><svg
+                  <a href="javascript:void(0);"
+                    ><svg
                       xmlns="http://www.w3.org/2000/svg"
                       xmlns:xlink="http://www.w3.org/1999/xlink"
                       width="18px"
@@ -824,9 +827,7 @@
                           fill="#000000"
                           fill-rule="nonzero"
                         />
-                      </g>
-                    </svg>
-                </a>
+                      </g></svg></a>
                 </div>
                 <div
                   class="card-body contacts_body p-0 dlab-scroll"
@@ -1051,7 +1052,7 @@
           <nav class="navbar navbar-expand">
             <div class="collapse navbar-collapse justify-content-between">
               <div class="header-left">
-                <div class="dashboard_bar">Data Tables</div>
+                <div class="dashboard_bar">Add New University</div>
               </div>
               <ul class="navbar-nav header-right">
                 <li class="nav-item dropdown notification_dropdown all">
@@ -1932,7 +1933,6 @@
           </nav>
         </div>
       </div>
-
       <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -2237,2076 +2237,268 @@
             Content body start
         ***********************************-->
       <div class="content-body">
-        <!-- container starts -->
         <div class="container-fluid">
-          <!-- row -->
-          <div class="element-area">
-            <div class="demo-view" style="width: 100%;">
-              <div class="container-fluid pt-0 ps-0 pe-lg-4 pe-0">
-                <!-- Column starts -->
-                <div id="university_detail_div" class="col-xl-12">
-                  <div class="card" id="accordion-three">
-                    <div
-                      class="card-header flex-wrap d-flex justify-content-between px-3"
-                    >
-                      <div>
-                        <h4 class="card-title">University datatable</h4>
-                        <div class="row" id="university_detail_info">
-                            <div class="col-xl-6 col-sm-6">
-                             
-                            </div>
-                            <div class="col-xl-6 col-sm-6">
-                              
-                            </div>
-                          </div>
+          <div class="row">
+            <div class="col-xl-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="mb-0">University Details</h5>
+                </div>
+                <div id="univeristy_detail_div" class="card-body">
+                  <div class="row">
+                    <div class="col-xl-6 col-sm-6">
+                      <div class="mb-3">
+                        <label
+                          for="exampleFormControlInput1"
+                          class="form-label text-primary"
+                          >University Name<span class="required">*</span></label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="exampleFormControlInput1"
+                          placeholder="Kharkov ..."
+                          name="name"
+                        />
                       </div>
-                      
-                    </div>
 
-                    <!-- /tab-content -->
-                    <div class="tab-content" id="myTabContent-2">
-                      <div
-                        class="tab-pane fade show active"
-                        id="withoutSpace"
-                        role="tabpanel"
-                        aria-labelledby="home-tab-2"
-                      >
-                        <div class="card-body p-0">
-                          <div class="table-responsive">
-                            <table
-                              id="example3"
-                              class="display table"
-                              style="min-width: 845px"
-                            >
-                              <thead>
-                                <tr>
-                                  <th></th>
-                                  <th>Name</th>
-                                  <th>Bachelor(Ə)</th>
-                                  <th>Bachelor(Q)</th>
-                                  <th>Master(Ə)</th>
-                                  <th>Master(Q)</th>
-                                  <th></th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    1
-                                  </td>
-                                  <td>Name</td>
-                                  <td>Bachelor(Ə)</td>
-                                  <td>Bachelor(Q)</td>
-                                  <td>Master(Ə)</td>
-                                  <td>Master(Q)</td>
-                                  <td>
-                                    <div class="d-flex">
-                                      <a
-                                        href="#"
-                                        class="btn btn-primary shadow btn-xs sharp me-1"
-                                        ><i class="fas fa-pencil-alt"></i
-                                      ></a>
-                                      <a
-                                        href="#"
-                                        class="btn btn-danger shadow btn-xs sharp"
-                                        ><i class="fa fa-trash"></i
-                                      ></a>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
+                      <div class="mb-3">
+                        <label
+                          for="exampleFormControlInput3"
+                          class="form-label text-primary"
+                          >Image Url<span class="required">*</span></label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="exampleFormControlInput3"
+                          placeholder="https://image.jpg"
+                          name="image_url"
+                        />
                       </div>
-                      <div
-                        class="tab-pane fade"
-                        id="withoutSpace-html"
-                        role="tabpanel"
-                        aria-labelledby="home-tab-2"
-                      >
-                        <div class="card-body pt-0 p-0 code-area">
-
-                        </div>
+                      <div class="mb-3">
+                        <label
+                          for="exampleFormControlInput4"
+                          class="form-label text-primary"
+                          >Logo Url<span class="required">*</span></label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="exampleFormControlInput4"
+                          placeholder="https://logo.jpg"
+                          name="logo_url"
+                        />
                       </div>
                     </div>
-                    <!-- /tab-content -->
+                    <div class="col-xl-6 col-sm-6">
+                      <div class="mb-3">
+                        <label
+                          for="exampleFormControlInput5"
+                          class="form-label text-primary"
+                          >Country<span class="required">*</span></label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="exampleFormControlInput5"
+                          placeholder="Ukraine"
+                          name="country"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          for="exampleFormControlInput6"
+                          class="form-label text-primary"
+                          >City<span class="required">*</span></label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="exampleFormControlInput6"
+                          placeholder="Kharkov"
+                          name="city"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-12 col-sm-12">
+                      <div class="mb-3">
+                        <label
+                          for="exampleFormControlTextarea1"
+                          class="form-label text-primary"
+                          >About<span class="required">*</span></label
+                        >
+                        <textarea
+                          class="form-control"
+                          id="exampleFormControlTextarea1"
+                          rows="6"
+                          name="about"
+                        >
+                        </textarea>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <!-- Column ends -->
-                <!-- Column starts -->
-
-                <!-- Column ends -->
-                <!-- Column starts -->
-                <div class="col-xl-12">
-                  <div class="card" id="accordion-five">
-                    <div
-                      class="card-header flex-wrap d-flex justify-content-between px-3"
-                    >
-                      <div>
-                        <h4 class="card-title">Student</h4>
-                        <p class="m-0 subtitle">
-                          Add <code>Student</code> class with
-                          <code>datatables</code>
-                        </p>
-                      </div>
-                   
-                    </div>
-                    <!-- tab-content -->
-                    <div class="tab-content" id="myTabContent-4">
-                      <div
-                        class="tab-pane fade show active"
-                        id="leftPosition"
-                        role="tabpanel"
-                        aria-labelledby="home-tab-4"
-                      >
-                        <div class="card-body p-0">
-                          <div class="table-responsive">
-                            <table
-                              id="example5"
-                              class="display table"
-                              style="min-width: 845px"
-                            >
-                              <thead>
-                                <tr>
-                                  <th>
-                                    <div
-                                      class="custom-control d-inline custom-checkbox"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="checkAll"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="checkAll"
-                                      ></label>
-                                    </div>
-                                  </th>
-                                  <th>Student ID</th>
-                                  <th>Date Check in</th>
-                                  <th>Student Name</th>
-                                  <th>Teacher Assgined</th>
-                                  <th>Class</th>
-                                  <th>Status</th>
-                                  <th>Room no</th>
-                                  <th>Action</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox2"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox2"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00001</td>
-                                  <td>26/02/2020, 12:42 AM</td>
-                                  <td>Tiger Nixon</td>
-                                  <td>sir. Cedric</td>
-                                  <td>Cold & Flu</td>
-                                  <td>
-                                    <span class="badge light badge-danger">
-                                      <i
-                                        class="fa fa-circle text-danger me-1"
-                                      ></i>
-                                      New Patient
-                                    </span>
-                                  </td>
-                                  <td>AB-001</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox3"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox3"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00002</td>
-                                  <td>28/02/2020, 12:42 AM</td>
-                                  <td>Garrett Winters</td>
-                                  <td>Dr. Cedric</td>
-                                  <td>Sleep Problem</td>
-                                  <td>
-                                    <span class="badge light badge-warning">
-                                      <i
-                                        class="fa fa-circle text-warning me-1"
-                                      ></i>
-                                      In Treatment
-                                    </span>
-                                  </td>
-                                  <td>AB-002</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox4"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox4"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00003</td>
-                                  <td>26/02/2020, 12:42 AM</td>
-                                  <td>Ashton Cox</td>
-                                  <td>Dr. Rhona</td>
-                                  <td>Cold & Flu</td>
-                                  <td>
-                                    <span class="badge light badge-success">
-                                      <i
-                                        class="fa fa-circle text-success me-1"
-                                      ></i>
-                                      Recovered
-                                    </span>
-                                  </td>
-                                  <td>AB-003</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox5"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox5"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00004</td>
-                                  <td>29/02/2020, 12:42 AM</td>
-                                  <td>Ashton Cox</td>
-                                  <td>Dr. Cedric</td>
-                                  <td>Cold & Flu</td>
-                                  <td>
-                                    <span class="badge light badge-warning">
-                                      <i
-                                        class="fa fa-circle text-warning me-1"
-                                      ></i>
-                                      In Treatment
-                                    </span>
-                                  </td>
-                                  <td>AB-004</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox6"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox6"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00005</td>
-                                  <td>28/02/2020, 12:42 AM</td>
-                                  <td>Ashton Cox</td>
-                                  <td>Dr. Cedric</td>
-                                  <td>Cold & Flu</td>
-                                  <td>
-                                    <span class="badge light badge-warning">
-                                      <i
-                                        class="fa fa-circle text-warning me-1"
-                                      ></i>
-                                      In Treatment
-                                    </span>
-                                  </td>
-                                  <td>AB-005</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox7"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox7"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00006</td>
-                                  <td>28/02/2020, 12:42 AM</td>
-                                  <td>Ashton Cox</td>
-                                  <td>Dr. Rhona</td>
-                                  <td>Sleep Problem</td>
-                                  <td>
-                                    <span class="badge light badge-warning">
-                                      <i
-                                        class="fa fa-circle text-warning me-1"
-                                      ></i>
-                                      In Treatment
-                                    </span>
-                                  </td>
-                                  <td>AB-006</td>
-                                  <td>
-                                    <div class="dropdown ms-auto text-end">
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox8"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox8"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00007</td>
-                                  <td>26/02/2020, 12:42 AM</td>
-                                  <td>Airi Satou</td>
-                                  <td>Dr. Rhona</td>
-                                  <td>Cold & Flu</td>
-                                  <td>
-                                    <span class="badge light badge-danger">
-                                      <i
-                                        class="fa fa-circle text-danger me-1"
-                                      ></i>
-                                      New Patient
-                                    </span>
-                                  </td>
-                                  <td>AB-007</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox9"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox9"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00008</td>
-                                  <td>29/02/2020, 12:42 AM</td>
-                                  <td>Airi Satou</td>
-                                  <td>Dr. Garrett</td>
-                                  <td>Sleep Problem</td>
-                                  <td>
-                                    <span class="badge light badge-warning">
-                                      <i
-                                        class="fa fa-circle text-warning me-1"
-                                      ></i>
-                                      In Treatment
-                                    </span>
-                                  </td>
-                                  <td>AB-008</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox10"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox10"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00009</td>
-                                  <td>25/02/2020, 12:42 AM</td>
-                                  <td>Airi Satou</td>
-                                  <td>Dr. Rhona</td>
-                                  <td>Cold & Flu</td>
-                                  <td>
-                                    <span class="badge light badge-danger">
-                                      <i
-                                        class="fa fa-circle text-danger me-1"
-                                      ></i>
-                                      New Patient
-                                    </span>
-                                  </td>
-                                  <td>AB-009</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox11"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox11"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00010</td>
-                                  <td>26/02/2020, 12:42 AM</td>
-                                  <td>Airi Satou</td>
-                                  <td>Dr. Rhona</td>
-                                  <td>Sleep Problem</td>
-                                  <td>
-                                    <span class="badge light badge-danger">
-                                      <i
-                                        class="fa fa-circle text-danger me-1"
-                                      ></i>
-                                      New Patient
-                                    </span>
-                                  </td>
-                                  <td>AB-010</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox12"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox12"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00011</td>
-                                  <td>28/02/2020, 12:42 AM</td>
-                                  <td>Airi Satou</td>
-                                  <td>Dr. Rhona</td>
-                                  <td>Cold & Flu</td>
-                                  <td>
-                                    <span class="badge light badge-warning">
-                                      <i
-                                        class="fa fa-circle text-warning me-1"
-                                      ></i>
-                                      In Treatment
-                                    </span>
-                                  </td>
-                                  <td>AB-011</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox13"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox13"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00012</td>
-                                  <td>29/02/2020, 12:42 AM</td>
-                                  <td>Sonya Frost</td>
-                                  <td>Dr. Garrett</td>
-                                  <td>Sleep Problem</td>
-                                  <td>
-                                    <span class="badge light badge-danger">
-                                      <i
-                                        class="fa fa-circle text-danger me-1"
-                                      ></i>
-                                      New Patient
-                                    </span>
-                                  </td>
-                                  <td>AB-012</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox14"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox14"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00013</td>
-                                  <td>25/02/2020, 12:42 AM</td>
-                                  <td>Sonya Frost</td>
-                                  <td>Dr. Rhona</td>
-                                  <td>Cold & Flu</td>
-                                  <td>
-                                    <span class="badge light badge-danger">
-                                      <i
-                                        class="fa fa-circle text-danger me-1"
-                                      ></i>
-                                      New Patient
-                                    </span>
-                                  </td>
-                                  <td>AB-013</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox15"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox15"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00014</td>
-                                  <td>26/02/2020, 12:42 AM</td>
-                                  <td>Sonya Frost</td>
-                                  <td>Dr. Garrett</td>
-                                  <td>Sleep Problem</td>
-                                  <td>
-                                    <span class="badge light badge-warning">
-                                      <i
-                                        class="fa fa-circle text-warning me-1"
-                                      ></i>
-                                      In Treatment
-                                    </span>
-                                  </td>
-                                  <td>AB-014</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox16"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox16"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00015</td>
-                                  <td>28/02/2020, 12:42 AM</td>
-                                  <td>Sonya Frost</td>
-                                  <td>Dr. Rhona</td>
-                                  <td>Cold & Flu</td>
-                                  <td>
-                                    <span class="badge light badge-danger">
-                                      <i
-                                        class="fa fa-circle text-danger me-1"
-                                      ></i>
-                                      New Patient
-                                    </span>
-                                  </td>
-                                  <td>AB-015</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox17"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox17"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00016</td>
-                                  <td>29/02/2020, 12:42 AM</td>
-                                  <td>Sonya Frost</td>
-                                  <td>Dr. Garrett</td>
-                                  <td>Sleep Problem</td>
-                                  <td>
-                                    <span class="badge light badge-danger">
-                                      <i
-                                        class="fa fa-circle text-danger me-1"
-                                      ></i>
-                                      New Patient
-                                    </span>
-                                  </td>
-                                  <td>AB-016</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox18"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox18"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00017</td>
-                                  <td>25/02/2020, 12:42 AM</td>
-                                  <td>Sonya Frost</td>
-                                  <td>Dr. Rhona</td>
-                                  <td>Cold & Flu</td>
-                                  <td>
-                                    <span class="badge light badge-warning">
-                                      <i
-                                        class="fa fa-circle text-warning me-1"
-                                      ></i>
-                                      In Treatment
-                                    </span>
-                                  </td>
-                                  <td>AB-017</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox19"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox19"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00018</td>
-                                  <td>26/02/2020, 12:42 AM</td>
-                                  <td>Sonya Frost</td>
-                                  <td>Dr. Rhona</td>
-                                  <td>Sleep Problem</td>
-                                  <td>
-                                    <span class="badge light badge-danger">
-                                      <i
-                                        class="fa fa-circle text-danger me-1"
-                                      ></i>
-                                      New Patient
-                                    </span>
-                                  </td>
-                                  <td>AB-018</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox20"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox20"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00019</td>
-                                  <td>28/02/2020, 12:42 AM</td>
-                                  <td>Sonya Frost</td>
-                                  <td>Dr. Rhona</td>
-                                  <td>Cold & Flu</td>
-                                  <td>
-                                    <span class="badge light badge-danger">
-                                      <i
-                                        class="fa fa-circle text-danger me-1"
-                                      ></i>
-                                      New Patient
-                                    </span>
-                                  </td>
-                                  <td>AB-019</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <div
-                                      class="form-check custom-checkbox ms-2"
-                                    >
-                                      <input
-                                        type="checkbox"
-                                        class="form-check-input"
-                                        id="customCheckBox21"
-                                        required=""
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="customCheckBox21"
-                                      ></label>
-                                    </div>
-                                  </td>
-                                  <td>#P-00020</td>
-                                  <td>25/02/2020, 12:42 AM</td>
-                                  <td>Sonya Frost</td>
-                                  <td>Dr. Garrett</td>
-                                  <td>Sleep Problem</td>
-                                  <td>
-                                    <span class="badge light badge-warning">
-                                      <i
-                                        class="fa fa-circle text-warning me-1"
-                                      ></i>
-                                      In Treatment
-                                    </span>
-                                  </td>
-                                  <td>AB-020</td>
-                                  <td>
-                                    <div
-                                      class="dropdown ms-auto text-end c-pointer"
-                                    >
-                                      <div
-                                        class="btn-link"
-                                        data-bs-toggle="dropdown"
-                                      >
-                                        <svg
-                                          width="24px"
-                                          height="24px"
-                                          viewBox="0 0 24 24"
-                                          version="1.1"
-                                        >
-                                          <g
-                                            stroke="none"
-                                            stroke-width="1"
-                                            fill="none"
-                                            fill-rule="evenodd"
-                                          >
-                                            <rect
-                                              x="0"
-                                              y="0"
-                                              width="24"
-                                              height="24"
-                                            ></rect>
-                                            <circle
-                                              fill="#000000"
-                                              cx="5"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="12"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                            <circle
-                                              fill="#000000"
-                                              cx="19"
-                                              cy="12"
-                                              r="2"
-                                            ></circle>
-                                          </g>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        class="dropdown-menu dropdown-menu-end"
-                                      >
-                                        <a class="dropdown-item" href="#"
-                                          >Accept Patient</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >Reject Order</a
-                                        >
-                                        <a class="dropdown-item" href="#"
-                                          >View Details</a
-                                        >
-                                      </div>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div
-                        class="tab-pane fade"
-                        id="leftPosition-html"
-                        role="tabpanel"
-                        aria-labelledby="home-tab-4"
-                      >
-                        <div class="card-body pt-0 p-0 code-area"></div>
-                      </div>
-                    </div>
-                    <!-- /tab-content -->
-                  </div>
-                </div>
-                <!-- Column ends -->
               </div>
             </div>
-            
+          </div>
+          <div class="col-xl-12" id="specialty">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">Ixtisaslar</h5>
+                <div
+                  id="add_university_specialty"
+                  style="
+                    width: 30px;
+                    height: 30px;
+                    background-color: #4d44b5;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 20px;
+                    cursor: pointer;
+                  "
+                >
+                  +
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-xl-12 col-sm-12">
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput9"
+                        class="form-label text-primary"
+                        >Ixtisas <span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput9"
+                        placeholder="University of Oxford"
+                        name="speciality_name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-sm-6">
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput11"
+                        class="form-label text-primary"
+                        >Education type <span class="required">*</span></label
+                      >
+                      <h5>Əyani</h5>
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-12 col-sm-12">
+                        <div class="mb-3">
+                          <label
+                            for="exampleFormControlInput15"
+                            class="form-label text-primary"
+                            >Bachelor price<span class="required">*</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput15"
+                            placeholder="1000$"
+                            name="b_full_price"
+
+                          />
+                        </div>
+
+                        <div class="mb-3">
+                          <label
+                            for="exampleFormControlInput13"
+                            class="form-label text-primary"
+                            >Master price<span class="required">*</span></label
+                          >
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="exampleFormControlInput13"
+                            placeholder="1000$"
+                            name="m_full_price"
+
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-sm-6">
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput11"
+                        class="form-label text-primary"
+                        ><span class="required">
+                          &nbsp;
+                        </span></label
+                      >
+                    
+                      <h5>Qiyabi</h5>
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-12 col-sm-12">
+                        <div class="mb-3">
+                          <label
+                            for="exampleFormControlInput16"
+                            class="form-label text-primary"
+                            >Bachelor price<span class="required">*</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput16"
+                            placeholder="1000$"
+                            name="b_correspondence_price"
+                          />
+                        </div>
+
+                        <div class="mb-3">
+                          <label
+                            for="exampleFormControlInput14"
+                            class="form-label text-primary"
+                            >Master price<span class="required">*</span></label
+                          >
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="exampleFormControlInput14"
+                            placeholder="1000$"
+                            name="m_correspondence_price"
+
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="float-end">
+                  <button class="btn btn-outline-primary me-3">
+                    Save as Draft
+                  </button>
+                  <button
+                    class="btn btn-primary"
+                    id="save_university_btn"
+                    type="button"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
       <!--**********************************
             Content body end
         ***********************************-->
 
-      <!--**********************************
-			Footer start
-		***********************************-->
-      <div class="footer out-footer style-1">
+      <div class="footer out-footer style-2">
         <div class="copyright">
           <p>
             Copyright © Designed &amp; Developed by
@@ -4314,9 +2506,10 @@
           </p>
         </div>
       </div>
+
       <!--**********************************
-			Footer end
-		***********************************-->
+            Footer end
+        ***********************************-->
 
       <!--**********************************
            Support ticket button start
@@ -4335,36 +2528,54 @@
     ***********************************-->
     <!-- Required vendors -->
     <script src="vendor/global/global.min.js"></script>
-
     <script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 
-    <!-- Datatable -->
-    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="js/plugins-init/datatables.init.js"></script>
-
-    <script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="vendor/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js"></script>
 
     <script src="js/custom.min.js"></script>
     <script src="js/dlabnav-init.js"></script>
     <script src="js/demo.js"></script>
     <script src="js/styleSwitcher.js"></script>
 
-    <!-- code-highlight -->
-    <script src="js/highlight.min.js"></script>
     <script>
-      hljs.highlightAll();
-      hljs.configure({ ignoreUnescapedHTML: true });
-    </script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", (event) => {
-        document.querySelectorAll("pre code").forEach((el) => {
-          hljs.highlightElement(el);
-        });
+      $(function () {
+        $("#datepicker, #datepicker1, #datepicker2")
+          .datepicker({
+            autoclose: true,
+            todayHighlight: true,
+          })
+          .datepicker("update", new Date());
       });
     </script>
-    <script type="module" src="./add-js/university.js"></script>
+
+    <script>
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#imagePreview").css(
+              "background-image",
+              "url(" + e.target.result + ")"
+            );
+            $("#imagePreview").hide();
+            $("#imagePreview").fadeIn(650);
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#imageUpload").change(function () {
+        readURL(this);
+      });
+      $(".remove-img").on("click", function () {
+        var imageUrl = "images/no-img-avatar.png";
+        $(".avatar-preview, #imagePreview").removeAttr("style");
+        $("#imagePreview").css("background-image", "url(" + imageUrl + ")");
+      });
+    </script>
+<script type="module" src="./add-js/university-edit.js"></script>
   </body>
 
-  <!-- Mirrored from akademi.dexignlab.com/xhtml/table-datatable-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Oct 2023 19:34:52 GMT -->
+  <!-- Mirrored from akademi.dexignlab.com/xhtml/add-teacher.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Oct 2023 19:34:02 GMT -->
 </html>
+
+
