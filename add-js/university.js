@@ -5,8 +5,9 @@ let universityLocation = document.querySelector("#university_location");
 let universityAbout = document.querySelector("#university_about");
 let universityImg = document.querySelector("#university_image");
 let specialtiesTable = document.querySelector("#example3");
-let editUniversityBtn = document.querySelector("#edit_university_btn")
-let universityLogoImg = document.querySelector("#logo_url")
+let editUniversityBtn = document.querySelector("#edit_university_btn");
+let delUniversityBtn = document.querySelector("#delete_university_btn");
+let universityLogoImg = document.querySelector("#logo_url");
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 // Your web app's Firebase configuration
 import {
@@ -52,21 +53,21 @@ get(dataRef)
 						<td>${specialty.master.full_time_price}</td>
 						<td>${specialty.master.correspondence_price}</td>
 					
-						<td>
-							<div class="d-flex">
-								<a	href="#"
-										class="btn btn-primary shadow btn-xs sharp me-1"
-								>
-                  <i class="fas fa-pencil-alt"></i>
-                </a>
-								<a  href="#"
-									  class="btn btn-danger shadow btn-xs sharp"
-								>
-                  <i class="fa fa-trash"></i>
-                </a>
-							</div>
-						</td>
-					`;
+            `;
+        // <td>
+        // 	<div class="d-flex">
+        // 		<a	href="#"
+        // 				class="btn btn-primary shadow btn-xs sharp me-1"
+        // 		>
+        //       <i class="fas fa-pencil-alt"></i>
+        //     </a>
+        // 		<a  href="#"
+        // 			  class="btn btn-danger shadow btn-xs sharp"
+        // 		>
+        //       <i class="fa fa-trash"></i>
+        //     </a>
+        // 	</div>
+        // </td>
         specialtiesTable.append(tr);
         counter++;
       });
@@ -77,6 +78,27 @@ get(dataRef)
   .catch((error) => {
     console.error("Error reading data: ", error);
   });
-editUniversityBtn.addEventListener("click",()=>{
-  window.location = `university-edit.html?id=${id}`
-})
+editUniversityBtn.addEventListener("click", () => {
+  window.location = `university-edit.html?id=${id}`;
+});
+delUniversityBtn.addEventListener("click", (e) => deleteUniversity(e));
+const deleteUniversity = (e) => {
+  e.preventDefault();
+  const itemKey = id;
+  if (itemKey) {
+    remove(ref(database, "/universities/" + itemKey))
+      .then(() => {
+        console.log("Data successfully deleted!");
+        alert("Data successfully deleted!");
+        window.location = `universities.html`;
+
+      })
+      .catch((error) => {
+        console.error("Error deleting data: ", error);
+        alert("Error deleting data: " + error);
+        window.location = `universities.html`;
+      });
+  } else {
+    alert("Silmek için geçerli bir anahtar girin.");
+  }
+};

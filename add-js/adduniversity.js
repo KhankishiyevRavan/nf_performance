@@ -62,12 +62,6 @@ btn.addEventListener("click", (e) => {
   var data = [];
 
   rows.forEach(function (row) {
-    // var ixtisas = row.querySelector(
-    //   '[placeholder="University of Oxford"]'
-    // ).value;
-    // var educationType = row.querySelector('[placeholder="Qiyabi/Əyani"]').value;
-    // var degree = row.querySelector('[placeholder="Magistr/Bakalavr"]').value;
-    // var price = row.querySelector('[placeholder="1000$"]').value;
     let s_name = row.querySelector('[name="speciality_name"]');
     let b_c_p = row.querySelector('[name="b_correspondence_price"]');
     let m_c_p = row.querySelector('[name="m_correspondence_price"]');
@@ -90,9 +84,13 @@ btn.addEventListener("click", (e) => {
   set(ref(database, "/universities/" + objKey), universityData)
     .then(() => {
       console.log("Data successfully written!");
+      alert("Data successfully deleted!");
+      window.location = `universities.html`;
     })
     .catch((error) => {
       console.error("Error writing data: ", error);
+      alert("Error writing data: ", error);
+      window.location = `universities.html`;
     });
 });
 specialty.addEventListener("click", function () {
@@ -158,7 +156,7 @@ specialty.addEventListener("click", function () {
                             >Master price<span class="required">*</span></label
                           >
                           <input
-                            type="number"
+                            type="text"
                             class="form-control"
                             id="exampleFormControlInput13"
                             placeholder="1000$"
@@ -205,7 +203,7 @@ specialty.addEventListener("click", function () {
                             >Master price<span class="required">*</span></label
                           >
                           <input
-                            type="number"
+                            type="text"
                             class="form-control"
                             id="exampleFormControlInput14"
                             placeholder="1000$"

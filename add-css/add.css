@@ -9,6 +9,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  width: 50px;
 }
 #specialty .card-body .row{
     border: 1px solid gray;

@@ -6,6 +6,8 @@ const university_detail_div_inputs = document.querySelectorAll(
 const university_detail_div_textarea = document.querySelector(
   "#univeristy_detail_div textarea"
 );
+const specialty = document.querySelector("#add_university_specialty");
+
 const saveUniveristyData = document.querySelector("#save_university_btn");
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 // Your web app's Firebase configuration
@@ -42,7 +44,249 @@ get(dataRef)
         input.value = universityData[input.name];
       });
       university_detail_div_textarea.value = universityData.about;
-      console.log(universityData);
+      // console.log(universityData);
+      // var rowsDiv = document.querySelector("#specialty .card-body");
+
+      let rowsFirst = document.querySelector("#specialty .card-body>.row");
+      let specialties = universityData?.specialties;
+      rowsFirst.innerHTML = `<div class="col-xl-12 col-sm-12">
+          <div class="mb-3">
+            <label
+              for="exampleFormControlInput9"
+              class="form-label text-primary"
+              >Ixtisas <span class="required">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput9"
+              placeholder="University of Oxford"
+              name="speciality_name"
+              value='${specialties[0].speciality_name}'
+            />
+          </div>
+        </div>
+        <div class="col-xl-6 col-sm-6">
+          <div class="mb-3">
+            <label
+              for="exampleFormControlInput11"
+              class="form-label text-primary"
+              >Education type <span class="required">*</span></label
+            >
+            <h5>Əyani</h5>
+          </div>
+          <div class="row">
+            <div class="col-xl-12 col-sm-12">
+              <div class="mb-3">
+                <label
+                  for="exampleFormControlInput15"
+                  class="form-label text-primary"
+                  >Bachelor price<span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleFormControlInput15"
+                  placeholder='1000$'
+                  value='${specialties[0].bachelor?.full_time_price}'
+                  name="b_full_price"
+
+                />
+              </div>
+
+              <div class="mb-3">
+                <label
+                  for="exampleFormControlInput13"
+                  class="form-label text-primary"
+                  >Master price<span class="required">*</span></label
+                >
+                <input
+                   type="text"
+                  class="form-control"
+                  id="exampleFormControlInput13"
+                  placeholder="1000$"
+                  name="m_full_price"
+                  value='${specialties[0].master?.full_time_price}'
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-sm-6">
+          <div class="mb-3">
+            <label
+              for="exampleFormControlInput11"
+              class="form-label text-primary"
+              ><span class="required">
+                &nbsp;
+              </span></label
+            >
+          
+            <h5>Qiyabi</h5>
+          </div>
+          <div class="row">
+            <div class="col-xl-12 col-sm-12">
+              <div class="mb-3">
+                <label
+                  for="exampleFormControlInput16"
+                  class="form-label text-primary"
+                  >Bachelor price<span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleFormControlInput16"
+                  placeholder="1000$"
+                  name="b_correspondence_price"
+                  value='${specialties[0].bachelor?.correspondence_price}'
+                />
+              </div>
+
+              <div class="mb-3">
+                <label
+                  for="exampleFormControlInput14"
+                  class="form-label text-primary"
+                  >Master price<span class="required">*</span></label
+                >
+                <input
+                   type="text"
+                  class="form-control"
+                  id="exampleFormControlInput14"
+                  placeholder="1000$"
+                  name="m_correspondence_price"
+                  value='${specialties[0].master?.correspondence_price}'
+                />
+              </div>
+            </div>
+          </div>
+        </div>`;
+      specialties.slice(1).map((s) => {
+        console.log(s.speciality_name);
+        let rows = document.querySelectorAll("#specialty .card-body>.row");
+        let lastRow = rows[rows.length - 1];
+        let newRow = document.createElement("div");
+        newRow.style.position = "relative";
+        newRow.className = "row";
+        newRow.innerHTML = `
+        <div class="col-xl-12 col-sm-12">
+          <div class="mb-3">
+            <label
+              for="exampleFormControlInput9"
+              class="form-label text-primary"
+              >Ixtisas <span class="required">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput9"
+              placeholder="University of Oxford"
+              name="speciality_name"
+              value='${s?.speciality_name}'
+            />
+          </div>
+        </div>
+        <div class="col-xl-6 col-sm-6">
+          <div class="mb-3">
+            <label
+              for="exampleFormControlInput11"
+              class="form-label text-primary"
+              >Education type <span class="required">*</span></label
+            >
+            <h5>Əyani</h5>
+          </div>
+          <div class="row">
+            <div class="col-xl-12 col-sm-12">
+              <div class="mb-3">
+                <label
+                  for="exampleFormControlInput15"
+                  class="form-label text-primary"
+                  >Bachelor price<span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleFormControlInput15"
+                  placeholder='1000$'
+                  value='${s?.bachelor?.full_time_price}'
+                  name="b_full_price"
+
+                />
+              </div>
+
+              <div class="mb-3">
+                <label
+                  for="exampleFormControlInput13"
+                  class="form-label text-primary"
+                  >Master price<span class="required">*</span></label
+                >
+                <input
+                   type="text"
+                  class="form-control"
+                  id="exampleFormControlInput13"
+                  placeholder="1000$"
+                  name="m_full_price"
+                  value='${s?.master?.full_time_price}'
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-sm-6">
+          <div class="mb-3">
+            <label
+              for="exampleFormControlInput11"
+              class="form-label text-primary"
+              ><span class="required">
+                &nbsp;
+              </span></label
+            >
+          
+            <h5>Qiyabi</h5>
+          </div>
+          <div class="row">
+            <div class="col-xl-12 col-sm-12">
+              <div class="mb-3">
+                <label
+                  for="exampleFormControlInput16"
+                  class="form-label text-primary"
+                  >Bachelor price<span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleFormControlInput16"
+                  placeholder="1000$"
+                  name="b_correspondence_price"
+                  value='${s?.bachelor?.correspondence_price}'
+                />
+              </div>
+
+              <div class="mb-3">
+                <label
+                  for="exampleFormControlInput14"
+                  class="form-label text-primary"
+                  >Master price<span class="required">*</span></label
+                >
+                <input
+                   type="text"
+                  class="form-control"
+                  id="exampleFormControlInput14"
+                  placeholder="1000$"
+                  name="m_correspondence_price"
+                  value='${s?.master?.correspondence_price}'
+                />
+              </div>
+            </div>
+            <button class="delete-btn">Sil</button>
+          </div>
+        </div>
+        `;
+        lastRow.parentNode.insertBefore(newRow, lastRow.nextSibling);
+        newRow.querySelector(".delete-btn").addEventListener("click", function () {
+          console.log("test");
+          newRow.remove();
+        });
+      });
     } else {
       console.log("No data available");
     }
@@ -62,27 +306,208 @@ university_detail_div_textarea.addEventListener("input", (e) => {
 });
 saveUniveristyData.addEventListener("click", (e) => {
   console.log(e.target);
+  var rows = document.querySelectorAll("#specialty .card-body>.row");
+  var data = [];
 
+  rows.forEach(function (row) {
+    let s_name = row.querySelector('[name="speciality_name"]');
+    let b_c_p = row.querySelector('[name="b_correspondence_price"]');
+    let m_c_p = row.querySelector('[name="m_correspondence_price"]');
+    let b_f_p = row.querySelector('[name="b_full_price"]');
+    let m_f_p = row.querySelector('[name="m_full_price"]');
+    console.log(s_name);
+    data.push({
+      speciality_name: s_name.value,
+      bachelor: {
+        correspondence_price: b_c_p.value,
+        full_time_price: b_f_p.value,
+      },
+      master: {
+        correspondence_price: m_c_p.value,
+        full_time_price: m_f_p.value,
+      },
+    });
+  });
+  universityEditData["specialties"] = [...data];
   update(ref(database, "/universities/" + id), universityEditData)
     .then(() => {
       alert("Data successfully Save");
       //   location.reload();
-      window.location = "university-detail.html?id="+id;
+      window.location = "university-detail.html?id=" + id;
     })
     .catch((error) => {
       alert("Data successfully Save", error);
     });
 });
-// const changeData = (e) => {
-//   console.log(e.target);
 
-//   update(ref(database, "/universities/" + dataKey), newData)
+specialty.addEventListener("click", function () {
+  var rows = document.querySelectorAll("#specialty .card-body>.row");
+  var lastRow = rows[rows.length - 1];
+
+  if (!lastRow) {
+    console.error("No row elements found");
+    return;
+  }
+
+  var newRow = document.createElement("div");
+  newRow.style.position = "relative";
+  newRow.className = "row";
+  newRow.innerHTML = `
+                  <div class="col-xl-12 col-sm-12">
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput9"
+                        class="form-label text-primary"
+                        >Ixtisas <span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput9"
+                        placeholder="University of Oxford"
+                        name="speciality_name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-sm-6">
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput11"
+                        class="form-label text-primary"
+                        >Education type <span class="required">*</span></label
+                      >
+                      <h5>Əyani</h5>
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-12 col-sm-12">
+                        <div class="mb-3">
+                          <label
+                            for="exampleFormControlInput15"
+                            class="form-label text-primary"
+                            >Bachelor price<span class="required">*</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput15"
+                            placeholder="1000$"
+                            name="b_full_price"
+
+                          />
+                        </div>
+
+                        <div class="mb-3">
+                          <label
+                            for="exampleFormControlInput13"
+                            class="form-label text-primary"
+                            >Master price<span class="required">*</span></label
+                          >
+                          <input
+                             type="text"
+                            class="form-control"
+                            id="exampleFormControlInput13"
+                            placeholder="1000$"
+                            name="m_full_price"
+
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-sm-6">
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput11"
+                        class="form-label text-primary"
+                        ><span class="required">
+                          &nbsp;
+                        </span></label
+                      >
+
+                      <h5>Qiyabi</h5>
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-12 col-sm-12">
+                        <div class="mb-3">
+                          <label
+                            for="exampleFormControlInput16"
+                            class="form-label text-primary"
+                            >Bachelor price<span class="required">*</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput16"
+                            placeholder="1000$"
+                            name="b_correspondence_price"
+                          />
+                        </div>
+
+                        <div class="mb-3">
+                          <label
+                            for="exampleFormControlInput14"
+                            class="form-label text-primary"
+                            >Master price<span class="required">*</span></label
+                          >
+                          <input
+                             type="text"
+                            class="form-control"
+                            id="exampleFormControlInput14"
+                            placeholder="1000$"
+                            name="m_correspondence_price"
+
+                          />
+                        </div>
+                      </div>
+                      <button class="delete-btn">Sil</button>
+                    </div>
+                  </div>
+    `;
+
+  lastRow.parentNode.insertBefore(newRow, lastRow.nextSibling);
+
+  // Yeni eklenen silme butonuna olay ekleyelim
+  newRow.querySelector(".delete-btn").addEventListener("click", function () {
+    console.log("test");
+    newRow.remove();
+  });
+});
+document.querySelectorAll(".delete-btn").forEach(function (button) {
+  button.addEventListener("click", function () {
+    button.closest(".row").remove();
+  });
+});
+// btn.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   var objKey = push(dataRef).key;
+//   var rows = document.querySelectorAll("#specialty .card-body>.row");
+//   var data = [];
+
+//   rows.forEach(function (row) {
+//     let s_name = row.querySelector('[name="speciality_name"]');
+//     let b_c_p = row.querySelector('[name="b_correspondence_price"]');
+//     let m_c_p = row.querySelector('[name="m_correspondence_price"]');
+//     let b_f_p = row.querySelector('[name="b_full_price"]');
+//     let m_f_p = row.querySelector('[name="m_full_price"]');
+//     console.log(s_name);
+//     data.push({
+//       speciality_name: s_name.value,
+//       bachelor: {
+//         correspondence_price: b_c_p.value,
+//         full_time_price: b_f_p.value,
+//       },
+//       master: {
+//         correspondence_price: m_c_p.value,
+//         full_time_price: m_f_p.value,
+//       },
+//     });
+//   });
+//   universityEditData["specialties"] = [...data];
+//   set(ref(database, "/universities/" + objKey), universityEditData)
 //     .then(() => {
-//       alert("Data successfully Save");
-//       //   location.reload();
-//       window.location = "universities.html";
+//       console.log("Data successfully written!");
 //     })
 //     .catch((error) => {
-//       alert("Data successfully Save", error);
+//       console.error("Error writing data: ", error);
 //     });
-// };
+// });
