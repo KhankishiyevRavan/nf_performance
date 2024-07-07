@@ -34,7 +34,7 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const dataRef = ref(database, "/universities/" + id);
 const universityEditData = {};
-let documents = []
+let documents = [];
 get(dataRef)
   .then((snapshot) => {
     if (snapshot.exists()) {
@@ -50,7 +50,9 @@ get(dataRef)
 
       let rowsFirst = document.querySelector("#specialty .card-body>.row");
       let specialties = universityData?.specialties;
-      documents = universityData?.documents;
+      if(universityData?.documents){
+        documents = universityData?.documents;
+      }
       rowsFirst.innerHTML = `<div class="col-xl-12 col-sm-12">
           <div class="mb-3">
             <label
@@ -289,7 +291,7 @@ get(dataRef)
           newRow.remove();
         });
       });
-      documents.map((doc,index) => {
+      documents?.map((doc,index) => {
         const documentRow = document.createElement("div");
         documentRow.className = "col-xl-6 col-sm-6";
         documentRow.innerHTML = `
@@ -530,7 +532,8 @@ document.querySelectorAll(".delete-btn").forEach(function (button) {
 // });
 
 document.getElementById('add_document_btn').addEventListener('click', function() {
-  const newDocumentIndex = documents.length + 1;
+  console.log(documents);
+  const newDocumentIndex = documents?.length + 1;
   const documentRow = document.createElement('div');
   documentRow.className = 'col-xl-6 col-sm-6';
   documentRow.innerHTML = `
