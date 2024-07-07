@@ -1996,15 +1996,19 @@
                 <li><a href="add-teacher.html">Add New Teacher</a></li>
               </ul>
             </li>
-            <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
-              <i class="material-symbols-outlined">star</i>
-              <span class="nav-text">Universitet</span>
-            </a>
-            <ul aria-expanded="false">
-              <li><a href="universities.html">Universitetlər</a></li>
-              <li><a href="add-university.html">Add New Universitet</a></li>
-            </ul>
-  
+            <li>
+              <a
+                class="has-arrow"
+                href="javascript:void(0);"
+                aria-expanded="false"
+              >
+                <i class="material-symbols-outlined">star</i>
+                <span class="nav-text">Universitet</span>
+              </a>
+              <ul aria-expanded="false">
+                <li><a href="universities.html">Universitetlər</a></li>
+                <li><a href="add-university.html">Add New Universitet</a></li>
+              </ul>
             </li>
             <li>
               <a
@@ -2329,6 +2333,25 @@
                       </div>
                     </div>
                   </div>
+                  <!-- <div class="row" id="university_documents">
+                    <div class="col-xl-6 col-sm-6">
+                      <div class="mb-3 document">
+                          <label
+                            for="exampleFormControlInput6"
+                            class="form-label text-primary"
+                            >Documents<span class="required">*</span></label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="exampleFormControlInput6"
+                            placeholder="Document"
+                            name="document"
+                          />
+                      </div>
+                    </div>
+                  </div> -->
+
                   <div class="row">
                     <div class="col-xl-12 col-sm-12">
                       <div class="mb-3">
@@ -2348,6 +2371,38 @@
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-12" id="documentss">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">Documents</h5>
+              </div>
+              <div class="card-body">
+                <div class="row" id="university_documents">
+                  
+                  <div class="col-xl-6 col-sm-6">
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput6"
+                        class="form-label text-primary"
+                      >
+                        &nbsp;
+                        <span class="required"></span>  
+                      </label>
+                      <button
+                      style="display: block;"
+                        type="button"
+                        id="add_document_btn"
+                        class="btn btn-primary"
+                      >
+                        + Add Document
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
               </div>
             </div>
           </div>
@@ -2405,7 +2460,9 @@
                           <label
                             for="exampleFormControlInput15"
                             class="form-label text-primary"
-                            >Bachelor price<span class="required">*</span></label
+                            >Bachelor price<span class="required"
+                              >*</span
+                            ></label
                           >
                           <input
                             type="text"
@@ -2413,7 +2470,6 @@
                             id="exampleFormControlInput15"
                             placeholder="1000$"
                             name="b_full_price"
-
                           />
                         </div>
 
@@ -2429,7 +2485,6 @@
                             id="exampleFormControlInput13"
                             placeholder="1000$"
                             name="m_full_price"
-
                           />
                         </div>
                       </div>
@@ -2440,11 +2495,9 @@
                       <label
                         for="exampleFormControlInput11"
                         class="form-label text-primary"
-                        ><span class="required">
-                          &nbsp;
-                        </span></label
+                        ><span class="required"> &nbsp; </span></label
                       >
-                    
+
                       <h5>Qiyabi</h5>
                     </div>
                     <div class="row">
@@ -2453,7 +2506,9 @@
                           <label
                             for="exampleFormControlInput16"
                             class="form-label text-primary"
-                            >Bachelor price<span class="required">*</span></label
+                            >Bachelor price<span class="required"
+                              >*</span
+                            ></label
                           >
                           <input
                             type="text"
@@ -2476,7 +2531,6 @@
                             id="exampleFormControlInput14"
                             placeholder="1000$"
                             name="m_correspondence_price"
-
                           />
                         </div>
                       </div>

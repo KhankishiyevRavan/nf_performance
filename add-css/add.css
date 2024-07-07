@@ -16,3 +16,11 @@
     padding: 15px;
     margin: 15px 0;
 }
+#university_documents .document{
+  position: relative;
+}
+#university_documents .document button{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

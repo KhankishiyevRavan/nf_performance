@@ -27,6 +27,8 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const dataRef = ref(database, "/universities");
 const universityData = {};
+let documents = [];
+
 get(dataRef)
   .then((snapshot) => {
     if (snapshot.exists()) {
@@ -81,10 +83,11 @@ btn.addEventListener("click", (e) => {
     });
   });
   universityData["specialties"] = [...data];
+  universityData["documents"] = [...documents]
   set(ref(database, "/universities/" + objKey), universityData)
     .then(() => {
       console.log("Data successfully written!");
-      alert("Data successfully deleted!");
+      alert("Data successfully written!");
       window.location = `universities.html`;
     })
     .catch((error) => {
@@ -220,14 +223,70 @@ specialty.addEventListener("click", function () {
   lastRow.parentNode.insertBefore(newRow, lastRow.nextSibling);
 
   // Yeni eklenen silme butonuna olay ekleyelim
-  newRow.querySelector(".delete-btn").addEventListener("click", function () {
+  newRow.querySelector("#specialty.delete-btn").addEventListener("click", function () {
     newRow.remove();
   });
 });
 
 // Mevcut silme butonuna olay ekleyelim
-document.querySelectorAll(".delete-btn").forEach(function (button) {
+document.querySelectorAll("#specialty .delete-btn").forEach(function (button) {
   button.addEventListener("click", function () {
     button.closest(".row").remove();
   });
 });
+
+
+document.getElementById('add_document_btn').addEventListener('click', function() {
+    const newDocumentIndex = documents.length + 1;
+    const documentRow = document.createElement('div');
+    documentRow.className = 'col-xl-6 col-sm-6';
+    documentRow.innerHTML = `
+        <div class="mb-3 document">
+            <label class="form-label text-primary">Document ${newDocumentIndex}<span class="required">*</span></label>
+            <input type="text" class="form-control" placeholder="Document" name="document" data-index="${newDocumentIndex}" />
+            <button type="button" class="btn btn-danger remove_document_btn">Remove</button>
+        </div>
+    `;
+    document.getElementById('university_documents').appendChild(documentRow);
+    documents.push({ index: newDocumentIndex, value: '' });
+    updateDocumentLabels();
+});
+
+document.getElementById('university_documents').addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('remove_document_btn')) {
+        const input = e.target.closest('.document').querySelector('input');
+        const index = parseInt(input.getAttribute('data-index'), 10);
+        documents = documents.filter(doc => doc.index !== index);
+        e.target.closest('.col-xl-6').remove();
+        updateDocumentLabels();
+    }
+});
+
+document.getElementById('university_documents').addEventListener('input', function(e) {
+    if (e.target && e.target.name === 'document') {
+        const index = parseInt(e.target.getAttribute('data-index'), 10);
+        const document = documents.find(doc => doc.index === index);
+        if (document) {
+            document.value = e.target.value;
+        }
+    }
+});
+
+function updateDocumentLabels() {
+    const documentLabels = document.querySelectorAll('#university_documents .document label');
+    documentLabels.forEach((label, index) => {
+        label.textContent = `Document ${index + 1}`;
+        const input = label.parentElement.querySelector('input');
+        input.setAttribute('data-index', index + 1);
+        const document = documents.find(doc => doc.index === parseInt(input.getAttribute('data-index'), 10));
+        if (document) {
+            document.index = index + 1;
+        }
+    });
+    logDocuments()
+}
+
+// Optional: Function to log the documents array for debugging
+function logDocuments() {
+    console.log(documents);
+}

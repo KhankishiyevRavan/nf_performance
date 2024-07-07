@@ -42,6 +42,7 @@ get(dataRef)
       universityImg.src = data.image_url;
       universityLogoImg.src = data.logo_url;
       let specialties = data.specialties;
+      let documents = data.documents;
       let counter = 1;
       specialties.map((specialty) => {
         let tr = document.createElement("tr");
@@ -52,24 +53,22 @@ get(dataRef)
 						<td>${specialty.bachelor.correspondence_price}</td>
 						<td>${specialty.master.full_time_price}</td>
 						<td>${specialty.master.correspondence_price}</td>
-					
             `;
-        // <td>
-        // 	<div class="d-flex">
-        // 		<a	href="#"
-        // 				class="btn btn-primary shadow btn-xs sharp me-1"
-        // 		>
-        //       <i class="fas fa-pencil-alt"></i>
-        //     </a>
-        // 		<a  href="#"
-        // 			  class="btn btn-danger shadow btn-xs sharp"
-        // 		>
-        //       <i class="fa fa-trash"></i>
-        //     </a>
-        // 	</div>
-        // </td>
         specialtiesTable.append(tr);
         counter++;
+      });
+      documents.map((doc,index) => {
+        const documentRow = document.createElement("div");
+        documentRow.className = "col-xl-6 col-sm-6";
+        documentRow.innerHTML = `
+        <div class="mb-3 document">
+            <label class="form-label text-primary">Document ${doc.index}<span class="required">*</span></label>
+            <input type="text" class="form-control" placeholder="Document" disabled value=${doc.value} name="document" data-index="${doc.index}" />
+        </div>
+    `;
+        document
+          .getElementById("university_documents")
+          .appendChild(documentRow);
       });
     } else {
       console.log("No data available");
@@ -91,7 +90,6 @@ const deleteUniversity = (e) => {
         console.log("Data successfully deleted!");
         alert("Data successfully deleted!");
         window.location = `universities.html`;
-
       })
       .catch((error) => {
         console.error("Error deleting data: ", error);
