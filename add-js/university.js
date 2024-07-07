@@ -63,9 +63,10 @@ get(dataRef)
         documentRow.innerHTML = `
         <div class="mb-3 document">
             <label class="form-label text-primary">Document ${doc.index}<span class="required">*</span></label>
-            <input type="text" class="form-control" placeholder="Document" disabled value=${doc.value} name="document" data-index="${doc.index}" />
+            <input type="text" class="form-control" placeholder="----" disabled value='${doc.value}' name="document" data-index="${doc.index}" />
         </div>
     `;
+    console.log(doc.value);
         document
           .getElementById("university_documents")
           .appendChild(documentRow);

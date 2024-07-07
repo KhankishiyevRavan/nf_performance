@@ -297,7 +297,7 @@ get(dataRef)
         documentRow.innerHTML = `
         <div class="mb-3 document">
             <label class="form-label text-primary">Document ${doc.index}<span class="required">*</span></label>
-            <input type="text" class="form-control" placeholder="Document" disabled value=${doc.value} name="document" data-index="${doc.index}" />
+            <input type="text" class="form-control" placeholder="Document" value='${doc.value}' name="document" data-index="${doc.index}" />
             <button type="button" class="btn btn-danger remove_document_btn">Remove</button>
         </div>
     `;
@@ -348,6 +348,7 @@ saveUniveristyData.addEventListener("click", (e) => {
   });
   universityEditData["specialties"] = [...data];
   universityEditData["documents"] = [...documents];
+  console.log(universityEditData);
   update(ref(database, "/universities/" + id), universityEditData)
     .then(() => {
       alert("Data successfully Save");
@@ -532,8 +533,13 @@ document.querySelectorAll(".delete-btn").forEach(function (button) {
 // });
 
 document.getElementById('add_document_btn').addEventListener('click', function() {
-  console.log(documents);
-  const newDocumentIndex = documents?.length + 1;
+  let newDocumentIndex = documents.length + 1;
+  
+  // Ensure the new index is unique
+  while (documents.some(doc => doc.index === newDocumentIndex)) {
+    newDocumentIndex++;
+  }
+
   const documentRow = document.createElement('div');
   documentRow.className = 'col-xl-6 col-sm-6';
   documentRow.innerHTML = `
@@ -545,44 +551,37 @@ document.getElementById('add_document_btn').addEventListener('click', function()
   `;
   document.getElementById('university_documents').appendChild(documentRow);
   documents.push({ index: newDocumentIndex, value: '' });
-  updateDocumentLabels();
 });
 
 document.getElementById('university_documents').addEventListener('click', function(e) {
   if (e.target && e.target.classList.contains('remove_document_btn')) {
-      const input = e.target.closest('.document').querySelector('input');
-      const index = parseInt(input.getAttribute('data-index'), 10);
-      documents = documents.filter(doc => doc.index !== index);
-      e.target.closest('.col-xl-6').remove();
-      updateDocumentLabels();
+    const input = e.target.closest('.document').querySelector('input');
+    const index = parseInt(input.getAttribute('data-index'), 10);
+    documents = documents.filter(doc => doc.index !== index);
+    e.target.closest('.col-xl-6').remove();
+
+    // Re-index documents to ensure unique, sequential indexes
+    let newIndex = 1;
+    documents.forEach(doc => {
+      doc.index = newIndex++;
+    });
+
+    // Update the labels and data-index attributes
+    const documentLabels = document.querySelectorAll('#university_documents .document label');
+    documentLabels.forEach((label, idx) => {
+      label.textContent = `Document ${idx + 1}`;
+      const input = label.parentElement.querySelector('input');
+      input.setAttribute('data-index', idx + 1);
+    });
   }
 });
 
 document.getElementById('university_documents').addEventListener('input', function(e) {
   if (e.target && e.target.name === 'document') {
-      const index = parseInt(e.target.getAttribute('data-index'), 10);
-      const document = documents.find(doc => doc.index === index);
-      if (document) {
-          document.value = e.target.value;
-      }
+    const index = parseInt(e.target.getAttribute('data-index'), 10);
+    const document = documents.find(doc => doc.index === index);
+    if (document) {
+      document.value = e.target.value;
+    }
   }
 });
-
-function updateDocumentLabels() {
-  const documentLabels = document.querySelectorAll('#university_documents .document label');
-  documentLabels.forEach((label, index) => {
-      label.textContent = `Document ${index + 1}`;
-      const input = label.parentElement.querySelector('input');
-      input.setAttribute('data-index', index + 1);
-      const document = documents.find(doc => doc.index === parseInt(input.getAttribute('data-index'), 10));
-      if (document) {
-          document.index = index + 1;
-      }
-  });
-  logDocuments()
-}
-
-// Optional: Function to log the documents array for debugging
-function logDocuments() {
-  console.log(documents);
-}
