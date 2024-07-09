@@ -4,7 +4,10 @@ const university_detail_div_inputs = document.querySelectorAll(
   "#univeristy_detail_div input"
 );
 const university_detail_div_textarea = document.querySelector(
-  "#univeristy_detail_div textarea"
+  "#univeristy_detail_div textarea.az"
+);
+const university_detail_div_textarea_en = document.querySelector(
+  "#univeristy_detail_div textarea.en"
 );
 const specialty = document.querySelector("#add_university_specialty");
 
@@ -45,6 +48,7 @@ get(dataRef)
         input.value = universityData[input.name];
       });
       university_detail_div_textarea.value = universityData.about;
+      university_detail_div_textarea_en.value = universityData.about_en;
       // console.log(universityData);
       // var rowsDiv = document.querySelector("#specialty .card-body");
 
@@ -53,7 +57,7 @@ get(dataRef)
       if(universityData?.documents){
         documents = universityData?.documents;
       }
-      rowsFirst.innerHTML = `<div class="col-xl-12 col-sm-12">
+      rowsFirst.innerHTML = `<div class="col-xl-6 col-sm-6">
           <div class="mb-3">
             <label
               for="exampleFormControlInput9"
@@ -67,6 +71,23 @@ get(dataRef)
               placeholder="University of Oxford"
               name="speciality_name"
               value='${specialties[0].speciality_name}'
+            />
+          </div>
+        </div>
+        <div class="col-xl-6 col-sm-6">
+          <div class="mb-3">
+            <label
+              for="exampleFormControlInput9"
+              class="form-label text-primary"
+              >Ixtisas <span class="required">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput9"
+              placeholder="University of Oxford"
+              name="speciality_name_en"
+              value='${specialties[0].speciality_name_en}'
             />
           </div>
         </div>
@@ -165,14 +186,14 @@ get(dataRef)
           </div>
         </div>`;
       specialties.slice(1).map((s) => {
-        console.log(s.speciality_name);
+        console.log(s);
         let rows = document.querySelectorAll("#specialty .card-body>.row");
         let lastRow = rows[rows.length - 1];
         let newRow = document.createElement("div");
         newRow.style.position = "relative";
         newRow.className = "row";
         newRow.innerHTML = `
-        <div class="col-xl-12 col-sm-12">
+        <div class="col-xl-6 col-sm-6">
           <div class="mb-3">
             <label
               for="exampleFormControlInput9"
@@ -186,6 +207,23 @@ get(dataRef)
               placeholder="University of Oxford"
               name="speciality_name"
               value='${s?.speciality_name}'
+            />
+          </div>
+        </div>
+        <div class="col-xl-6 col-sm-6">
+          <div class="mb-3">
+            <label
+              for="exampleFormControlInput9"
+              class="form-label text-primary"
+              >Ixtisas <span class="required">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput9"
+              placeholder="University of Oxford"
+              name="speciality_name_en"
+              value='${s?.speciality_name_en}'
             />
           </div>
         </div>
@@ -329,6 +367,7 @@ saveUniveristyData.addEventListener("click", (e) => {
 
   rows.forEach(function (row) {
     let s_name = row.querySelector('[name="speciality_name"]');
+    let s_name_en = row.querySelector('[name="speciality_name_en"]');
     let b_c_p = row.querySelector('[name="b_correspondence_price"]');
     let m_c_p = row.querySelector('[name="m_correspondence_price"]');
     let b_f_p = row.querySelector('[name="b_full_price"]');
@@ -336,6 +375,7 @@ saveUniveristyData.addEventListener("click", (e) => {
     console.log(s_name);
     data.push({
       speciality_name: s_name.value,
+      speciality_name_en: s_name_en.value,
       bachelor: {
         correspondence_price: b_c_p.value,
         full_time_price: b_f_p.value,
@@ -373,7 +413,7 @@ specialty.addEventListener("click", function () {
   newRow.style.position = "relative";
   newRow.className = "row";
   newRow.innerHTML = `
-                  <div class="col-xl-12 col-sm-12">
+                  <div class="col-xl-6 col-sm-6">
                     <div class="mb-3">
                       <label
                         for="exampleFormControlInput9"
@@ -386,6 +426,22 @@ specialty.addEventListener("click", function () {
                         id="exampleFormControlInput9"
                         placeholder="University of Oxford"
                         name="speciality_name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-sm-6">
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput9"
+                        class="form-label text-primary"
+                        >Ixtisas <span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput9"
+                        placeholder="University of Oxford"
+                        name="speciality_name_en"
                       />
                     </div>
                   </div>
@@ -497,40 +553,6 @@ document.querySelectorAll(".delete-btn").forEach(function (button) {
     button.closest(".row").remove();
   });
 });
-// btn.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   var objKey = push(dataRef).key;
-//   var rows = document.querySelectorAll("#specialty .card-body>.row");
-//   var data = [];
-
-//   rows.forEach(function (row) {
-//     let s_name = row.querySelector('[name="speciality_name"]');
-//     let b_c_p = row.querySelector('[name="b_correspondence_price"]');
-//     let m_c_p = row.querySelector('[name="m_correspondence_price"]');
-//     let b_f_p = row.querySelector('[name="b_full_price"]');
-//     let m_f_p = row.querySelector('[name="m_full_price"]');
-//     console.log(s_name);
-//     data.push({
-//       speciality_name: s_name.value,
-//       bachelor: {
-//         correspondence_price: b_c_p.value,
-//         full_time_price: b_f_p.value,
-//       },
-//       master: {
-//         correspondence_price: m_c_p.value,
-//         full_time_price: m_f_p.value,
-//       },
-//     });
-//   });
-//   universityEditData["specialties"] = [...data];
-//   set(ref(database, "/universities/" + objKey), universityEditData)
-//     .then(() => {
-//       console.log("Data successfully written!");
-//     })
-//     .catch((error) => {
-//       console.error("Error writing data: ", error);
-//     });
-// });
 
 document.getElementById('add_document_btn').addEventListener('click', function() {
   let newDocumentIndex = documents.length + 1;
