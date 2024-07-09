@@ -54,7 +54,7 @@ get(dataRef)
 
       let rowsFirst = document.querySelector("#specialty .card-body>.row");
       let specialties = universityData?.specialties;
-      if(universityData?.documents){
+      if (universityData?.documents) {
         documents = universityData?.documents;
       }
       rowsFirst.innerHTML = `<div class="col-xl-6 col-sm-6">
@@ -324,21 +324,36 @@ get(dataRef)
         </div>
         `;
         lastRow.parentNode.insertBefore(newRow, lastRow.nextSibling);
-        newRow.querySelector(".delete-btn").addEventListener("click", function () {
-          console.log("test");
-          newRow.remove();
-        });
+        newRow
+          .querySelector(".delete-btn")
+          .addEventListener("click", function () {
+            console.log("test");
+            newRow.remove();
+          });
       });
-      documents?.map((doc,index) => {
+      documents?.map((doc, index) => {
         const documentRow = document.createElement("div");
-        documentRow.className = "col-xl-6 col-sm-6";
-        documentRow.innerHTML = `
+        documentRow.classList.add("row");
+        documentRow.style.position = "relative";
+        const documentCol = document.createElement("div");
+        documentCol.className = "col-xl-6 col-sm-6";
+        documentCol.innerHTML = `
         <div class="mb-3 document">
             <label class="form-label text-primary">Document ${doc.index}<span class="required">*</span></label>
             <input type="text" class="form-control" placeholder="Document" value='${doc.value}' name="document" data-index="${doc.index}" />
             <button type="button" class="btn btn-danger remove_document_btn">Remove</button>
         </div>
     `;
+        const documentColEn = document.createElement("div");
+        documentColEn.className = "col-xl-5 col-sm-5";
+        documentColEn.innerHTML = `
+        <div class="mb-3 document">
+            <label class="form-label text-primary">Document ${doc.index} En<span class="required">*</span></label>
+            <input type="text" class="form-control" placeholder="Document" value='${doc.value_en}' name="document_en" data-index="${doc.index}" />
+            
+        </div>
+    `;
+        documentRow.append(documentCol, documentColEn);
         document
           .getElementById("university_documents")
           .appendChild(documentRow);
@@ -550,60 +565,96 @@ specialty.addEventListener("click", function () {
 });
 document.querySelectorAll(".delete-btn").forEach(function (button) {
   button.addEventListener("click", function () {
+    console.log(button.closest(".row"));
     button.closest(".row").remove();
   });
 });
 
-document.getElementById('add_document_btn').addEventListener('click', function() {
-  let newDocumentIndex = documents.length + 1;
-  
-  // Ensure the new index is unique
-  while (documents.some(doc => doc.index === newDocumentIndex)) {
-    newDocumentIndex++;
-  }
+document
+  .getElementById("add_document_btn")
+  .addEventListener("click", function () {
+    let newDocumentIndex = documents.length + 1;
 
-  const documentRow = document.createElement('div');
-  documentRow.className = 'col-xl-6 col-sm-6';
-  documentRow.innerHTML = `
+    // Ensure the new index is unique
+    while (documents.some((doc) => doc.index === newDocumentIndex)) {
+      newDocumentIndex++;
+    }
+    const documentRow = document.createElement("div");
+    documentRow.classList.add("row");
+    documentRow.style.position = "relative";
+    const documentCol = document.createElement("div");
+    documentCol.className = "col-xl-6 col-sm-6";
+    documentCol.innerHTML = `
       <div class="mb-3 document">
           <label class="form-label text-primary">Document ${newDocumentIndex}<span class="required">*</span></label>
           <input type="text" class="form-control" placeholder="Document" name="document" data-index="${newDocumentIndex}" />
           <button type="button" class="btn btn-danger remove_document_btn">Remove</button>
       </div>
   `;
-  document.getElementById('university_documents').appendChild(documentRow);
-  documents.push({ index: newDocumentIndex, value: '' });
-});
+    const documentColEn = document.createElement("div");
+    documentColEn.className = "col-xl-5 col-sm-5";
+    documentColEn.innerHTML = `
+      <div class="mb-3 document">
+          <label class="form-label text-primary">Document ${newDocumentIndex} En<span class="required">*</span></label>
+          <input type="text" class="form-control" placeholder="Document" name="document_en" data-index="${newDocumentIndex}" />
+      </div>
+  `;
+    documentRow.append(documentCol, documentColEn);
+    document.getElementById("university_documents").appendChild(documentRow);
+    documents.push({ index: newDocumentIndex, value: "", value_en: "" });
+  });
 
-document.getElementById('university_documents').addEventListener('click', function(e) {
-  if (e.target && e.target.classList.contains('remove_document_btn')) {
-    const input = e.target.closest('.document').querySelector('input');
-    const index = parseInt(input.getAttribute('data-index'), 10);
-    documents = documents.filter(doc => doc.index !== index);
-    e.target.closest('.col-xl-6').remove();
+document
+  .getElementById("university_documents")
+  .addEventListener("click", function (e) {
+    if (e.target && e.target.classList.contains("remove_document_btn")) {
+      const input = e.target.closest(".document").querySelector("input");
+      const index = parseInt(input.getAttribute("data-index"), 10);
+      documents = documents.filter((doc) => doc.index !== index);
+      e.target.closest(".row").remove();
 
-    // Re-index documents to ensure unique, sequential indexes
-    let newIndex = 1;
-    documents.forEach(doc => {
-      doc.index = newIndex++;
-    });
+      // Re-index documents to ensure unique, sequential indexes
+      let newIndex = 1;
+      documents.forEach((doc) => {
+        doc.index = newIndex++;
+      });
 
-    // Update the labels and data-index attributes
-    const documentLabels = document.querySelectorAll('#university_documents .document label');
-    documentLabels.forEach((label, idx) => {
-      label.textContent = `Document ${idx + 1}`;
-      const input = label.parentElement.querySelector('input');
-      input.setAttribute('data-index', idx + 1);
-    });
-  }
-});
-
-document.getElementById('university_documents').addEventListener('input', function(e) {
-  if (e.target && e.target.name === 'document') {
-    const index = parseInt(e.target.getAttribute('data-index'), 10);
-    const document = documents.find(doc => doc.index === index);
-    if (document) {
-      document.value = e.target.value;
+      // Update the labels and data-index attributes
+      const documentLabels = document.querySelectorAll(
+        "#university_documents  .col-xl-6.col-sm-6 .document label"
+      );
+      documentLabels.forEach((label, idx) => {
+        label.textContent = `Document ${idx + 1}`;
+        label
+          .closest(".row")
+          .querySelector(".col-xl-5.col-sm-5 label").textContent = `Document ${
+          idx + 1
+        }`;
+        const input = label.parentElement.querySelector("input");
+        input.setAttribute("data-index", idx + 1);
+        label
+          .closest(".row")
+          .querySelector(".col-xl-5.col-sm-5 input")
+          .setAttribute("data-index", idx + 1);
+      });
     }
-  }
-});
+  });
+
+document
+  .getElementById("university_documents")
+  .addEventListener("input", function (e) {
+    if (e.target && e.target.name === "document") {
+      const index = parseInt(e.target.getAttribute("data-index"), 10);
+      const document = documents.find((doc) => doc.index === index);
+      if (document) {
+        document.value = e.target.value;
+      }
+    }
+    if (e.target && e.target.name === "document_en") {
+      const index = parseInt(e.target.getAttribute("data-index"), 10);
+      const document = documents.find((doc) => doc.index === index);
+      if (document) {
+        document.value_en = e.target.value;
+      }
+    }
+  });
