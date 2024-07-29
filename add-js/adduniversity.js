@@ -1,6 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 // import { getDatabase } from "firebase/database";
 // Your web app's Firebase configuration
+import {
+  getAuth,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
 const btn = document.querySelector("#save_univeristy_data");
 const specialty = document.querySelector("#add_university_specialty");
 import {
@@ -25,6 +30,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth(app);
 const dataRef = ref(database, "/universities");
 const universityData = {};
 let documents = [];
@@ -83,18 +89,25 @@ btn.addEventListener("click", (e) => {
     });
   });
   universityData["specialties"] = [...data];
-  universityData["documents"] = [...documents]
-  set(ref(database, "/universities/" + objKey), universityData)
-    .then(() => {
-      console.log("Data successfully written!");
-      alert("Data successfully written!");
-      window.location = `universities.html`;
-    })
-    .catch((error) => {
-      console.error("Error writing data: ", error);
-      alert("Error writing data: ", error);
-      window.location = `universities.html`;
-    });
+  universityData["documents"] = [...documents];
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      set(ref(database, "/universities/" + objKey), universityData)
+        .then(() => {
+          console.log("Data successfully written!");
+          alert("Data successfully written!");
+          window.location = `universities.html`;
+        })
+        .catch((error) => {
+          console.error("Error writing data: ", error);
+          alert("Error writing data: ", error);
+          window.location = `universities.html`;
+        }); 
+    }else {
+      alert("User not authenticated");
+      window.location.href = 'page-login.html'; // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+    }
+  });
 });
 specialty.addEventListener("click", function () {
   var rows = document.querySelectorAll("#specialty .card-body>.row");
@@ -223,9 +236,11 @@ specialty.addEventListener("click", function () {
   lastRow.parentNode.insertBefore(newRow, lastRow.nextSibling);
 
   // Yeni eklenen silme butonuna olay ekleyelim
-  newRow.querySelector("#specialty.delete-btn").addEventListener("click", function () {
-    newRow.remove();
-  });
+  newRow
+    .querySelector("#specialty.delete-btn")
+    .addEventListener("click", function () {
+      newRow.remove();
+    });
 });
 
 // Mevcut silme butonuna olay ekleyelim
@@ -235,11 +250,12 @@ document.querySelectorAll("#specialty .delete-btn").forEach(function (button) {
   });
 });
 
-
-document.getElementById('add_document_btn').addEventListener('click', function() {
+document
+  .getElementById("add_document_btn")
+  .addEventListener("click", function () {
     const newDocumentIndex = documents.length + 1;
-    const documentRow = document.createElement('div');
-    documentRow.className = 'col-xl-6 col-sm-6';
+    const documentRow = document.createElement("div");
+    documentRow.className = "col-xl-6 col-sm-6";
     documentRow.innerHTML = `
         <div class="mb-3 document">
             <label class="form-label text-primary">Document ${newDocumentIndex}<span class="required">*</span></label>
@@ -247,46 +263,54 @@ document.getElementById('add_document_btn').addEventListener('click', function()
             <button type="button" class="btn btn-danger remove_document_btn">Remove</button>
         </div>
     `;
-    document.getElementById('university_documents').appendChild(documentRow);
-    documents.push({ index: newDocumentIndex, value: '' });
+    document.getElementById("university_documents").appendChild(documentRow);
+    documents.push({ index: newDocumentIndex, value: "" });
     updateDocumentLabels();
-});
+  });
 
-document.getElementById('university_documents').addEventListener('click', function(e) {
-    if (e.target && e.target.classList.contains('remove_document_btn')) {
-        const input = e.target.closest('.document').querySelector('input');
-        const index = parseInt(input.getAttribute('data-index'), 10);
-        documents = documents.filter(doc => doc.index !== index);
-        e.target.closest('.col-xl-6').remove();
-        updateDocumentLabels();
+document
+  .getElementById("university_documents")
+  .addEventListener("click", function (e) {
+    if (e.target && e.target.classList.contains("remove_document_btn")) {
+      const input = e.target.closest(".document").querySelector("input");
+      const index = parseInt(input.getAttribute("data-index"), 10);
+      documents = documents.filter((doc) => doc.index !== index);
+      e.target.closest(".col-xl-6").remove();
+      updateDocumentLabels();
     }
-});
+  });
 
-document.getElementById('university_documents').addEventListener('input', function(e) {
-    if (e.target && e.target.name === 'document') {
-        const index = parseInt(e.target.getAttribute('data-index'), 10);
-        const document = documents.find(doc => doc.index === index);
-        if (document) {
-            document.value = e.target.value;
-        }
+document
+  .getElementById("university_documents")
+  .addEventListener("input", function (e) {
+    if (e.target && e.target.name === "document") {
+      const index = parseInt(e.target.getAttribute("data-index"), 10);
+      const document = documents.find((doc) => doc.index === index);
+      if (document) {
+        document.value = e.target.value;
+      }
     }
-});
+  });
 
 function updateDocumentLabels() {
-    const documentLabels = document.querySelectorAll('#university_documents .document label');
-    documentLabels.forEach((label, index) => {
-        label.textContent = `Document ${index + 1}`;
-        const input = label.parentElement.querySelector('input');
-        input.setAttribute('data-index', index + 1);
-        const document = documents.find(doc => doc.index === parseInt(input.getAttribute('data-index'), 10));
-        if (document) {
-            document.index = index + 1;
-        }
-    });
-    logDocuments()
+  const documentLabels = document.querySelectorAll(
+    "#university_documents .document label"
+  );
+  documentLabels.forEach((label, index) => {
+    label.textContent = `Document ${index + 1}`;
+    const input = label.parentElement.querySelector("input");
+    input.setAttribute("data-index", index + 1);
+    const document = documents.find(
+      (doc) => doc.index === parseInt(input.getAttribute("data-index"), 10)
+    );
+    if (document) {
+      document.index = index + 1;
+    }
+  });
+  logDocuments();
 }
 
 // Optional: Function to log the documents array for debugging
 function logDocuments() {
-    console.log(documents);
+  console.log(documents);
 }

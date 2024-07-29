@@ -14,6 +14,12 @@ const specialty = document.querySelector("#add_university_specialty");
 const saveUniveristyData = document.querySelector("#save_university_btn");
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 // Your web app's Firebase configuration
+
+import {
+  getAuth,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
 import {
   getDatabase,
   ref,
@@ -35,6 +41,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth(app);
 const dataRef = ref(database, "/universities/" + id);
 const universityEditData = {};
 let documents = [];
@@ -404,15 +411,22 @@ saveUniveristyData.addEventListener("click", (e) => {
   universityEditData["specialties"] = [...data];
   universityEditData["documents"] = [...documents];
   console.log(universityEditData);
-  update(ref(database, "/universities/" + id), universityEditData)
-    .then(() => {
-      alert("Data successfully Save");
-      //   location.reload();
-      window.location = "university-detail.html?id=" + id;
-    })
-    .catch((error) => {
-      alert("Data successfully Save", error);
-    });
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      update(ref(database, "/universities/" + id), universityEditData)
+        .then(() => {
+          alert("Data successfully Save");
+          //   location.reload();
+          window.location = "university-detail.html?id=" + id;
+        })
+        .catch((error) => {
+          alert("Data successfully Save", error);
+        });
+    } else {
+      alert("User not authenticated");
+      window.location.href = "page-login.html"; // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+    }
+  });
 });
 
 specialty.addEventListener("click", function () {
