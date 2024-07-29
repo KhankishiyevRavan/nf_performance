@@ -38,5 +38,3 @@ function logout() {
 }
 
 btn.addEventListener("click", logout);
-
-
