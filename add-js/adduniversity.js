@@ -53,6 +53,9 @@ const university_detail_div_inputs = document.querySelectorAll(
 const university_detail_div_textarea = document.querySelector(
   "#univeristy_detail_div textarea"
 );
+const university_detail_div_textarea_en = document.querySelector(
+  "#univeristy_detail_div textarea.en"
+);
 [...university_detail_div_inputs].map((input) => {
   input.addEventListener("input", () => {
     universityData[input.name] = input.value;
@@ -63,6 +66,10 @@ university_detail_div_textarea.addEventListener("input", (e) => {
   universityData["about"] = e.target.value;
   console.log(universityData);
 });
+university_detail_div_textarea_en.addEventListener("input", (e) => {
+  universityData["about_en"] = e.target.value;
+  console.log(universityData);
+});
 btn.addEventListener("click", (e) => {
   e.preventDefault();
   var objKey = push(dataRef).key;
@@ -71,6 +78,7 @@ btn.addEventListener("click", (e) => {
 
   rows.forEach(function (row) {
     let s_name = row.querySelector('[name="speciality_name"]');
+    let s_name_en = row.querySelector('[name="speciality_name_en"]');
     let b_c_p = row.querySelector('[name="b_correspondence_price"]');
     let m_c_p = row.querySelector('[name="m_correspondence_price"]');
     let b_f_p = row.querySelector('[name="b_full_price"]');
@@ -78,6 +86,7 @@ btn.addEventListener("click", (e) => {
     console.log(s_name);
     data.push({
       speciality_name: s_name.value,
+      speciality_name_en: s_name_en.value,
       bachelor: {
         correspondence_price: b_c_p.value,
         full_time_price: b_f_p.value,
@@ -122,7 +131,7 @@ specialty.addEventListener("click", function () {
   newRow.style.position = "relative";
   newRow.className = "row";
   newRow.innerHTML = `
-                  <div class="col-xl-12 col-sm-12">
+                  <div class="col-xl-6 col-sm-6">
                     <div class="mb-3">
                       <label
                         for="exampleFormControlInput9"
@@ -135,6 +144,22 @@ specialty.addEventListener("click", function () {
                         id="exampleFormControlInput9"
                         placeholder="University of Oxford"
                         name="speciality_name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-sm-6">
+                    <div class="mb-3">
+                      <label
+                        for="exampleFormControlInput9"
+                        class="form-label text-primary"
+                        >Ixtisas  En<span class="required">*</span></label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput9"
+                        placeholder="University of Oxford"
+                        name="speciality_name_en"
                       />
                     </div>
                   </div>
@@ -172,7 +197,7 @@ specialty.addEventListener("click", function () {
                             >Master price<span class="required">*</span></label
                           >
                           <input
-                            type="text"
+                             type="text"
                             class="form-control"
                             id="exampleFormControlInput13"
                             placeholder="1000$"
@@ -192,7 +217,7 @@ specialty.addEventListener("click", function () {
                           &nbsp;
                         </span></label
                       >
-                    
+
                       <h5>Qiyabi</h5>
                     </div>
                     <div class="row">
@@ -219,7 +244,7 @@ specialty.addEventListener("click", function () {
                             >Master price<span class="required">*</span></label
                           >
                           <input
-                            type="text"
+                             type="text"
                             class="form-control"
                             id="exampleFormControlInput14"
                             placeholder="1000$"
@@ -236,11 +261,10 @@ specialty.addEventListener("click", function () {
   lastRow.parentNode.insertBefore(newRow, lastRow.nextSibling);
 
   // Yeni eklenen silme butonuna olay ekleyelim
-  newRow
-    .querySelector("#specialty.delete-btn")
-    .addEventListener("click", function () {
-      newRow.remove();
-    });
+  newRow.querySelector(".delete-btn").addEventListener("click", function () {
+    console.log("test");
+    newRow.remove();
+  });
 });
 
 // Mevcut silme butonuna olay ekleyelim
@@ -253,19 +277,35 @@ document.querySelectorAll("#specialty .delete-btn").forEach(function (button) {
 document
   .getElementById("add_document_btn")
   .addEventListener("click", function () {
-    const newDocumentIndex = documents.length + 1;
+    let newDocumentIndex = documents.length + 1;
+
+    // Ensure the new index is unique
+    while (documents.some((doc) => doc.index === newDocumentIndex)) {
+      newDocumentIndex++;
+    }
     const documentRow = document.createElement("div");
-    documentRow.className = "col-xl-6 col-sm-6";
-    documentRow.innerHTML = `
-        <div class="mb-3 document">
-            <label class="form-label text-primary">Document ${newDocumentIndex}<span class="required">*</span></label>
-            <input type="text" class="form-control" placeholder="Document" name="document" data-index="${newDocumentIndex}" />
-            <button type="button" class="btn btn-danger remove_document_btn">Remove</button>
-        </div>
-    `;
+    documentRow.classList.add("row");
+    documentRow.style.position = "relative";
+    const documentCol = document.createElement("div");
+    documentCol.className = "col-xl-6 col-sm-6";
+    documentCol.innerHTML = `
+      <div class="mb-3 document">
+          <label class="form-label text-primary">Document ${newDocumentIndex}<span class="required">*</span></label>
+          <input type="text" class="form-control" placeholder="Document" name="document" data-index="${newDocumentIndex}" />
+          <button type="button" class="btn btn-danger remove_document_btn">Remove</button>
+      </div>
+  `;
+    const documentColEn = document.createElement("div");
+    documentColEn.className = "col-xl-5 col-sm-5";
+    documentColEn.innerHTML = `
+      <div class="mb-3 document">
+          <label class="form-label text-primary">Document ${newDocumentIndex} En<span class="required">*</span></label>
+          <input type="text" class="form-control" placeholder="Document" name="document_en" data-index="${newDocumentIndex}" />
+      </div>
+  `;
+    documentRow.append(documentCol, documentColEn);
     document.getElementById("university_documents").appendChild(documentRow);
-    documents.push({ index: newDocumentIndex, value: "" });
-    updateDocumentLabels();
+    documents.push({ index: newDocumentIndex, value: "", value_en: "" });
   });
 
 document
@@ -275,8 +315,32 @@ document
       const input = e.target.closest(".document").querySelector("input");
       const index = parseInt(input.getAttribute("data-index"), 10);
       documents = documents.filter((doc) => doc.index !== index);
-      e.target.closest(".col-xl-6").remove();
-      updateDocumentLabels();
+      e.target.closest(".row").remove();
+
+      // Re-index documents to ensure unique, sequential indexes
+      let newIndex = 1;
+      documents.forEach((doc) => {
+        doc.index = newIndex++;
+      });
+
+      // Update the labels and data-index attributes
+      const documentLabels = document.querySelectorAll(
+        "#university_documents  .col-xl-6.col-sm-6 .document label"
+      );
+      documentLabels.forEach((label, idx) => {
+        label.textContent = `Document ${idx + 1}`;
+        label
+          .closest(".row")
+          .querySelector(".col-xl-5.col-sm-5 label").textContent = `Document ${
+          idx + 1
+        }`;
+        const input = label.parentElement.querySelector("input");
+        input.setAttribute("data-index", idx + 1);
+        label
+          .closest(".row")
+          .querySelector(".col-xl-5.col-sm-5 input")
+          .setAttribute("data-index", idx + 1);
+      });
     }
   });
 
@@ -290,27 +354,17 @@ document
         document.value = e.target.value;
       }
     }
-  });
-
-function updateDocumentLabels() {
-  const documentLabels = document.querySelectorAll(
-    "#university_documents .document label"
-  );
-  documentLabels.forEach((label, index) => {
-    label.textContent = `Document ${index + 1}`;
-    const input = label.parentElement.querySelector("input");
-    input.setAttribute("data-index", index + 1);
-    const document = documents.find(
-      (doc) => doc.index === parseInt(input.getAttribute("data-index"), 10)
-    );
-    if (document) {
-      document.index = index + 1;
+    if (e.target && e.target.name === "document_en") {
+      const index = parseInt(e.target.getAttribute("data-index"), 10);
+      const document = documents.find((doc) => doc.index === index);
+      if (document) {
+        document.value_en = e.target.value;
+      }
     }
   });
-  logDocuments();
-}
+
 
 // Optional: Function to log the documents array for debugging
-function logDocuments() {
-  console.log(documents);
-}
+// function logDocuments() {
+//   console.log(documents);
+// }

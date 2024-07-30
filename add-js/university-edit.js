@@ -86,7 +86,7 @@ get(dataRef)
             <label
               for="exampleFormControlInput9"
               class="form-label text-primary"
-              >Ixtisas <span class="required">*</span></label
+              >Ixtisas En<span class="required">*</span></label
             >
             <input
               type="text"
@@ -222,7 +222,7 @@ get(dataRef)
             <label
               for="exampleFormControlInput9"
               class="form-label text-primary"
-              >Ixtisas <span class="required">*</span></label
+              >Ixtisas En<span class="required">*</span></label
             >
             <input
               type="text"
@@ -376,6 +376,10 @@ university_detail_div_textarea.addEventListener("input", (e) => {
   universityEditData.about = e.target.value;
   console.log(universityEditData);
 });
+university_detail_div_textarea_en.addEventListener("input", (e) => {
+  universityEditData.about_en = e.target.value;
+  console.log(universityEditData);
+});
 [...university_detail_div_inputs].map((input) => {
   input.addEventListener("input", () => {
     universityEditData[input.name] = input.value;
@@ -463,7 +467,7 @@ specialty.addEventListener("click", function () {
                       <label
                         for="exampleFormControlInput9"
                         class="form-label text-primary"
-                        >Ixtisas <span class="required">*</span></label
+                        >Ixtisas En<span class="required">*</span></label
                       >
                       <input
                         type="text"
